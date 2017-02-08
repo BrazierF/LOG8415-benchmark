@@ -1,0 +1,11 @@
+- Speedtest est un outil de test de performances réseau Internet relié au site speedtest.net
+
+- il permet d'évaluer les vitesses de transit réseau entre un des serveurs de speedtest.net (le plus proche en terme de ping) entrantes et sortantes ainsi que le ping entre le serveur choisi et la machine d'ou est lancé le test
+
+- les deux métriques importantes pour ce test sont les vitesses entrantes et sortantes
+
+- le ping (temps mis par un paquet unitaire de donnée pour transiter d'un point A à un point B) est intéressant dans certains cas d'usage pour mesurer des temps de parcours lorsque deux extrémités sont fixées (ex : ping moyen entre deux Datacenters éloignés ou 2 réseaux virtuels au sein d'un même Datacenter). Ce n'est pas notre cas ici.
+
+- Ligne de commande pour le test : speedtest-cli --simple
+
+ 
