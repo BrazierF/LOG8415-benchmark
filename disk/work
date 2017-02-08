@@ -24,15 +24,29 @@ Les tests seront executées séquentiellement 5 fois et une moyenne des vitesses
 
 Commande testées
 
-- Informations sur le disque virtuel : 
+$sudo hdparm -v /dev/xvda (informations sur le disque virtuel)
+/dev/xvda:
+ HDIO_DRIVE_CMD(identify) failed: Invalid argument
+ readonly      =  0 (off)
+ readahead     = 256 (on)
+ geometry      = 1044/255/63, sectors = 16777216, start = 0
 
-sudo hdparm -v /dev/xvda
-sudo hdparm -v /dev/xvda1
+
+$sudo hdparm -v /dev/xvda1
+/dev/xvda1:
+ HDIO_DRIVE_CMD(identify) failed: Invalid argument
+ readonly      =  0 (off)
+ readahead     = 256 (on)
+ geometry      = 1044/255/63, sectors = 16761118, start = 16065
 
 Les 2 "disques" sont presques similaires (une légère partie de xvda est absente dans xvda) : xvda1 est la seule partition de xvda.
 
-- Tests
+$sudo hdparm -tT /dev/xvda (test)
+/dev/xvda:
+ Timing cached reads:   20078 MB in  2.00 seconds = 10048.85 MB/sec
+ Timing buffered disk reads: 244 MB in  3.00 seconds =  81.29 MB/sec
 
-sudo hdparm -tT /dev/xvda
-
-sudo hdparm -tT /dev/xvda1
+$sudo hdparm -tT /dev/xvda1
+/dev/xvda1:
+ Timing cached reads:   20290 MB in  2.00 seconds = 10155.65 MB/sec
+ Timing buffered disk reads: 246 MB in  3.03 seconds =  81.13 MB/sec

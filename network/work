@@ -1,3 +1,5 @@
+Notes
+
 - Speedtest est un outil de test de performances réseau Internet relié au site speedtest.net
 
 - il permet d'évaluer les vitesses de transit réseau entre un des serveurs de speedtest.net (le plus proche en terme de ping) entrantes et sortantes ainsi que le ping entre le serveur choisi et la machine d'ou est lancé le test
@@ -6,6 +8,34 @@
 
 - le ping (temps mis par un paquet unitaire de donnée pour transiter d'un point A à un point B) est intéressant dans certains cas d'usage pour mesurer des temps de parcours lorsque deux extrémités sont fixées (ex : ping moyen entre deux Datacenters éloignés ou 2 réseaux virtuels au sein d'un même Datacenter). Ce n'est pas notre cas ici.
 
-- Ligne de commande pour le test : speedtest-cli --simple
+- Ligne de commande pour le test : speedtest-cli --simple (permet de récupérer seulement les informations sur le débit entrant et sortant et le ping)
 
- 
+
+
+Commandes testées : 
+
+$speedtest-cli 
+
+Retrieving speedtest.net configuration...
+Retrieving speedtest.net server list...
+Testing from Amazon (54.172.220.99)...
+Selecting best server based on latency...
+Hosted by BroadAspect (Ashburn, VA) [1.39 km]: 3.013 ms
+Testing download speed........................................
+Download: 225.25 Mbit/s
+Testing upload speed..................................................
+Upload: 308.02 Mbit/s
+
+$speedtest-cli --simple
+
+Ping: 3.374 ms
+Download: 184.23 Mbit/s
+Upload: 282.07 Mbit/s
+
+
+Premières conclusions
+
+- les performances obtenues semblent très variables même mesurées à des instants très proches (débits et ping) -> il pourrait être judicieux d'augmenter le nombre de mesures réalisées par séquence.
+
+- seules les métriques débit entrant maximal et débit sortant maximal semblent pertinentes ici
+
