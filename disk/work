@@ -1,0 +1,23 @@
+D'après les premières informations sur l'outil que j'ai pu récupérées :
+
+- hdparm is a command line utility to set and view hardware parameters of hard disk drives. It can also be used as a simple benchmarking tool. 
+
+- Il semble obligatoire d’exécuter plusieurs fois séquentiellement l'utilitaire pour obtenir une valeur plus précise des performances du disque à un temps t (3-4 fois)
+
+- L'outil permet notamment d'évaluer 2 vitesses correspondant à des oprations différentes au niveau du disque
+
+direct read (-t option) → read speed without any data cached to buffer. This is an indication of how fast the drive can sustain sequential data reads under linux and without any file system overhead
+
+cache read (-T option) → This displays the speed of reading directly from the Linux buffer cache without disk access.  This measurement is essentially an indication of the throughput of the processor, cache, and memory of the system under test.
+
+
+La Command line pour le benchmark (direct read et cache read) : sudo hdparm -tT /dev/xvda
+
+Le disque à tester sur la machine virtuelle Amazon est /dev/xvda qui est le nom du disque virtuel donné par l'hyperviseur Xen
+
+
+Conclusions
+
+Il semble que la vitesse I/O pertinente à évaluer ici soi celle correspondant à l'option -t : direct read. En effet, l'autre vitesse ne semble pas correspondre à des lectures effectuées sur le disque mais plutôt sur le cache du processeur, ainsi celle-ci est plutot révélative de la "vitesse maximale" à laquelle le processeur pourrait lire si les accès au disque s'éxécutaient instantanément. L'élément limitant ici semble être la vitesse de lecture sur le disque.
+
+Les tests seront executées séquentiellement 5 fois et une moyenne des vitesses obtenues sera calculée. Nous planifierons plusieurs de ces séries de 5 tests à des heures différentes afin d'évaluer la variance temporelle de cette métrique.   
